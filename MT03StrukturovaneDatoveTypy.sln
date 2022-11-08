@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MT03StrukturovaneDatoveTypy", "MT03StrukturovaneDatoveTypy\MT03StrukturovaneDatoveTypy.csproj", "{72F2EC02-AEA3-4227-9C93-731DAF47CEE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72F2EC02-AEA3-4227-9C93-731DAF47CEE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F2EC02-AEA3-4227-9C93-731DAF47CEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F2EC02-AEA3-4227-9C93-731DAF47CEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F2EC02-AEA3-4227-9C93-731DAF47CEE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9BC3BEE3-95F2-43D4-86C5-65C09D212CC8}
+	EndGlobalSection
+EndGlobal
