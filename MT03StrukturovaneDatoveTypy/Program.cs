@@ -2,7 +2,6 @@
 using System.Collections;
 //using static System.Console;
 
-
 // Strukturované datové typy
 // - objekty skládající se z několika komponent (členů)
 // homogenní - komponenty stejného typu; heterogenní - komponenty různého typu
@@ -16,6 +15,9 @@ using System.Collections;
 Beer plzen = new Beer("Pilsner Urquell", 55); // instance struktury Beer s inicializací přes parametrický konstruktor
 Console.WriteLine(plzen);
 Console.WriteLine();
+
+// Struct vs Class
+// - struktura je hodnotový datový typ, třída je referenční datový typ
 
 // objekt
 // = instance
@@ -49,11 +51,17 @@ foreach (int x in cisla3)
 {
     Console.WriteLine(x); // foreach poskytuje přímo hodnotu, není ale dostupná informace o pozici v poli
 }
+int inc = 0;
+foreach (int x in cisla3)
+{
+    Console.WriteLine(x);
+    inc++;
+}
 Console.WriteLine();
 
 // pole je referenční datový typ - proměnná obsahuje jen adresu (=referenci, aluzi), na které se obsah proměnné nachází
 int[] prvni = { 1, 1, 1, 1, 1 };
-int[] druhe = prvni;
+int[] druhe = prvni; // tady říkám, že pole druhe bude ukazovat na to samé místo v paměti, kde je pole prvni
 druhe[2] = 2; // přepíše se i první - vytváříme pouze mělkou kopii
 foreach (int x in prvni)
 {
@@ -119,15 +127,32 @@ Console.WriteLine();
 
 // vlastnosti pole
 Console.WriteLine(jaggedArray.Length); // délka pole
-Console.WriteLine(jaggedArray.Rank); // počet rozměů pole
+Console.WriteLine(jaggedArray.Rank); // počet rozměrů pole
 Console.WriteLine(Array.MaxLength); // statická vlastnost určující maximální deklarovatelnou velikost jednorozměrného pole
+
+int[] poletest = { 1, 2, 4, 8, 2, 9, 6, 11, 3 };
+Console.WriteLine(Array.IndexOf(poletest, 2)); // 1
+Console.WriteLine(Array.IndexOf(poletest, 2)); // Prohledáváme od začátku = 1
+Console.WriteLine(Array.IndexOf(poletest, 5)); // Prvek v poli není = -1
+Console.WriteLine(Array.IndexOf(poletest, 2, 3)); // Prohledáváme od indexu 3 dál = 4
+Console.WriteLine(Array.LastIndexOf(poletest, 2)); // 4
+Console.WriteLine(Array.Exists(poletest, x => x > 10)); // existují v poli prvky s hodnotou větší než 10? = true
+Console.WriteLine(Array.Find(poletest, x => x == 2)); // vrací hodnotu prvku = 2
+Console.WriteLine(Array.Find(poletest, x => x == 5)); // prvek v poli není -> defaultní hodnota = 0​
+int[] vysledek = Array.FindAll(poletest, x => x > 4);
+foreach (int i in vysledek)
+{
+    Console.WriteLine(i); // 8,9,6,11
+}
+Console.WriteLine(Array.FindIndex(poletest, x => x == 2)); // 1
+Console.WriteLine(Array.FindIndex(poletest, x => x == 5)); // prvek v poli není = -1
 Console.WriteLine();
 
 // mělká vs hluboká kopie
 // - mělká - pouze reference na stejné místo v paměti - všechny změny se tedy ve všech mělkých kopiích téhož pole
 // - hluboká - zkopíruje a založí nové objekty
 int[] pole = { 1, 2, 4, 8, 2, 9, 6, 11, 3 };
-int[] pole2 = (int[])pole.Clone(); // pozn. v Javascriptu operátor spread: pole1 = [...pole2]
+int[] pole2 = (int[])pole.Clone(); // pozn. v JavaScriptu operátor spread: pole1 = [...pole2];
 pole2[1] = 100;
 foreach (int i in pole)
 {
@@ -219,7 +244,7 @@ while (stack1.Any())
 Console.WriteLine("--- HashSet");
 HashSet<string> list2 = new HashSet<string> { "Antilopa", "Fenek", "Bizon", "Cvrček", "Datel", "Emu" };
 list2.Add("Gekon");
-list2.Add("Antilopa");
+list2.Add("Antilopa"); // nevloží se, protože už tam je
 foreach (string l in list2)
 {
     Console.WriteLine(l);
@@ -249,9 +274,9 @@ foreach (KeyValuePair<string, string> item in dict2)
 // -- Negenerické
 // ArrayList
 Console.WriteLine("--- ArrayList");
-ArrayList list4 = new ArrayList { "Antilopa", "Fenek", "Bizon", "Cvrček", "Datel", "Emu" };
+ArrayList list4 = new ArrayList { "Antilopa", "Fenek", "Bizon", "Cvrček", "Datel", "Emu", 5, 5.7f };
 list4.Add("Gekon");
-foreach (string l in list4)
+foreach (var l in list4)
 {
     // zde je nutné testovat typ objektu, nějak takto:
     if (l is string)
@@ -261,7 +286,7 @@ foreach (string l in list4)
 }
 // Hashtable - negenerický Dictionary
 Console.WriteLine("--- Hashtable");
-Hashtable dict3 = new Hashtable { { "Antilopa", "Antelope" }, { "Cvrček", "Cricket" }, { "Datel", "Woodpecker" }, { "Bizon", "Bison" } };
+Hashtable dict3 = new Hashtable { { "Antilopa", "Antelope" }, { "Cvrček", "Cricket" }, { "Datel", 50 }, { "Bizon", "Bison" } };
 dict3.Add("Gekon", "Gecko");
 foreach (DictionaryEntry item in dict3)
 {
@@ -293,10 +318,12 @@ Console.WriteLine();
 // FRONTA - First In, First Out (kdo přijde jako první, jako první odchází)
 // - např. jako fronta na úřadě - FIFO,
 // metody Enqueue (přijde), Dequeue (odchází), Peek
+// https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Data_Queue.svg/1200px-Data_Queue.svg.png
 
 // ZÁSOBNÍK - Last In, First Out (kdo přijde jako poslední, odchází jako první)
 // - např. zásobník na vodu - LIFO,
 // metody Push (vložení), Pop (odebrání), Peek
+// https://cdn.programiz.com/sites/tutorial2program/files/stack.png
 
 // Pole vs kolekce
 // - pole obsahuje neměnný počet prvků, nedá se rozšiřovat, méně vestavěných metod
